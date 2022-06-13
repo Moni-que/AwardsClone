@@ -53,3 +53,7 @@ def signin(request):
 
     return render(request, 'all_templates/signin.html')
 
+@login_required(login_url = "signin")
+def logout(request):
+    auth.logout(request)
+    return redirect('signin')
