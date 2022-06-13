@@ -5,7 +5,10 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    re_path(r'^home',views.home,name='home'),
+    re_path(r'^$',views.index,name='index'),
+    re_path(r'^signup',views.signup,name='signup'),
+    re_path(r'^signin',views.signin,name='signin'),
+    re_path(r'^logout',views.logout,name='logout'),
 ]
 
 
