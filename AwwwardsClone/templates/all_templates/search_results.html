@@ -1,0 +1,34 @@
+{% extends 'all_templates/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+
+<div class="container">
+
+
+<h1 class="text-center text-light">These are the results of your search for "{{ message }}"</h1>
+
+
+
+
+{% for image in images %}
+<div class="col">
+    <div class="card" style="width: 80%;background-color:  #e6e6ea; padding: 10px;">
+        {% if image.image %}
+            <img src="{{image.image.url}}" style="width: 100%;" alt="">
+        {% endif %}
+        <div class="card-body">
+            <h3><b>{{image.user}}</b></h3>
+            <a href="" style="text-decoration: none;"><h4>{{image.image_link}}</h4></a>
+            <h3><b>{{image.image_name}}</b></h3>
+            <p>{{image.image_description}}</p>
+        </div>
+    </div>
+</div>
+{% endfor%}
+
+
+    
+
+  </div>
+
+{% endblock %}
