@@ -4,14 +4,18 @@
 {% block content %}
 
 <div style="left: 0;background-color: #111; height: 100%;width: 50%;position: fixed;z-index: 1;top: 0;overflow-x: hidden;padding-top: 20px;" class="split left">
-    <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);text-align: center;" class="centered">
-        <img style="width: 150px;border-radius: 50%;" src="data:image/jpeg;base64,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" alt="">
+    <div style="height: 100%; position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);text-align: center;" class="centered">
+        <img height="100%" src="https://assets.awwwards.com/assets/images/pages/about-certificates/awwwards.jpg" alt="">
     </div>
 </div>
 
 
-<div style="right: 0;background-color: white; height: 100%;width: 50%;position: fixed;z-index: 1;top: 0;overflow-x: hidden;padding-top: 20px;" class="split right">
-    <div class="my_signin_div" style="width: 80%; border-radius: 5px;background-color: #f2f2f2;padding: 20px;width: 50%;margin: auto;">
+<div style="right: 0;background-color: lightblue; height: 100%;width: 50%;position: fixed;z-index: 1;top: 0;overflow-x: hidden;padding-top: 70px;" class="split right">
+    <div class="my_signin_div" style="border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 50%;
+    margin: auto;">
         <h2 class="text-center">Log In</h2>
         {% for message in messages %}
             <h5>{{ message }}</h5>
@@ -19,7 +23,14 @@
         <form action="" method="POST">
         {% csrf_token %}
             <label for="fname">Username</label>
-            <input style="width: 100%;background-color: lightblue;color: white;padding: 14px 20px;margin: 8px 0;border: none;border-radius: 4px;cursor: pointer;" class="signin_input" type="text" id="username" name="username" placeholder="Your username..">
+            <input style="width: 100%;
+            background-color: lightblue;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;" class="signin_input" type="text" id="username" name="username" placeholder="Your username..">
     
             <label for="lname">Password</label>
             <input style="width: 100%;background-color: lightblue;color: white;padding: 14px 20px;margin: 8px 0;border: none;border-radius: 4px;cursor: pointer;" class="signin_input" type="password" id="password" name="password" placeholder="Your password..">
