@@ -8,7 +8,8 @@ from .forms import ProjectForm
 # Create your views here.
 @login_required(login_url = "signin")
 def index(request):
-    return render(request, 'all_templates/index.html')
+    projects = Project.objects.all()
+    return render(request, 'all_templates/index.html',{'projects':projects})
 
 def signup(request):
     if request.method == 'POST':
@@ -67,6 +68,7 @@ def upload(request):
         if form.is_valid():
             project=form.save(commit=False)
             project.save()
+            messages.success(request, "You have successfully posted your project!")
             return redirect('index')
     else:
         form=ProjectForm()
