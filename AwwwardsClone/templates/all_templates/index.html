@@ -4,6 +4,19 @@
 
     <div class="container">
         <h1>WELCOME TO AWARDS</h1>
+        {% for project in projects %}
+            {% if project.image %}
+                <img src="{{project.image.url}}" style="width: 80%;" alt="">
+            {% endif %}
+            <p>{{project.user}}</p>
+            <p>{{project.project_link}}</p>
+            <p>{{project.project_name}}</p>
+            <p>{{project.project_description}}</p>
+
+
+
+            
+        {% endfor%}
     </div>
 
 {% endblock %}
