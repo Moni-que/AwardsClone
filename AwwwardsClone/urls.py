@@ -9,6 +9,7 @@ urlpatterns = [
     re_path(r'^signup',views.signup,name='signup'),
     re_path(r'^$',views.signin,name='signin'),
     re_path(r'^logout',views.logout,name='logout'),
+    re_path(r'^upload', views.upload, name = "upload"),
 ]
 
 
