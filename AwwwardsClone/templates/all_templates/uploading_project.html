@@ -3,19 +3,11 @@
 
 {% block content %}
 
-<div class="col-sm-6 form-container">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class=" text-success" >upload Your Project here</h1>
-           
-           
-            
-        </div>
-    </div>
+<div class="container">
+        <h1 class="text-center">upload Your Project</h1>
         <div class="form-data text-light mx-6" >
-            <form action="{%url 'upload'%}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h2 class="intro text-light">Upload my project</h2>
                 {% bootstrap_form form%}
                 <button class="btn btn-info bg-success" type="submit">Upload</button>
             </form>
