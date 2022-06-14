@@ -4,10 +4,12 @@ from .models import Profile, Project, Review
 from django.http import JsonResponse, HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
+from .forms import ProjectForm
 # Create your views here.
 @login_required(login_url = "signin")
 def index(request):
     return render(request, 'all_templates/index.html')
+
 def signup(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -57,3 +59,17 @@ def signin(request):
 def logout(request):
     auth.logout(request)
     return redirect('signin')
+
+@login_required(login_url = "signin")
+def upload(request):
+    if request.method == 'POST':
+        form=ProjectForm(request.POST,request.FILES)
+        if form.is_valid():
+            project=form.save(commit=False)
+            project.save()
+            return redirect('index')
+    else:
+        form=ProjectForm()
+    return render(request,"all_templates/uploading_project.html",{'form':form})          
+
+
