@@ -21,7 +21,7 @@ class Profile(models.Model):
         return self.profile_photo
 
 class Project(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="projects")
     image = models.ImageField(upload_to='images')
     project_link = models.URLField(max_length=255)
     project_name = models.CharField(max_length=150)
@@ -37,8 +37,8 @@ class Project(models.Model):
    
   # search project using project name
     @classmethod
-    def search_project_name(cls, search_term):
-        images = cls.objects.filter(name__icontains=search_term)
+    def search_results_name(cls, search_term):
+        images = cls.objects.filter(project_name__icontains=search_term)
         return images  
 
     def str(self):
