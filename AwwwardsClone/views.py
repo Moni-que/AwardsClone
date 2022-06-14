@@ -72,6 +72,17 @@ def upload(request):
             return redirect('index')
     else:
         form=ProjectForm()
-    return render(request,"all_templates/uploading_project.html",{'form':form})          
+    return render(request,"all_templates/uploading_project.html",{'form':form}) 
 
+@login_required(login_url = "signin")
+def search_results(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term=request.GET.get('search')
+        images=Project.search_results_name(search_term)
+        message=f'{search_term}'
+
+        return render(request, 'all_templates/search_results.html', {'message': message, 'images': images})
+    else:
+        message = 'Not found'
+    return render(request, 'all_templates/search_results.html',{"message":message})
 
