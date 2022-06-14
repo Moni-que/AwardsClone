@@ -3,19 +3,23 @@
 {% block content %}
 
     <div class="container">
-        <h1>WELCOME TO AWARDS</h1>
+        <h1 class="text-center" style="padding-bottom: 20px;">WELCOME TO AWARDS</h1>
         {% for project in projects %}
-            {% if project.image %}
-                <img src="{{project.image.url}}" style="width: 80%;" alt="">
-            {% endif %}
-            <p>{{project.user}}</p>
-            <a href=""><p>{{project.project_link}}</p></a>
-            <p>{{project.project_name}}</p>
-            <p>{{project.project_description}}</p>
 
+        <div class="col-md-4">
+            <div class="card" style="width: 80%;background-color:  #e6e6ea; padding: 10px;">
+                {% if project.image %}
+                    <img src="{{project.image.url}}" style="width: 100%;" alt="">
+                {% endif %}
+                <div class="card-body">
+                    <h3><b>{{project.user}}</b></h3>
+                    <a href="" style="text-decoration: none;"><h4>{{project.project_link}}</h4></a>
+                    <h3><b>{{project.project_name}}</b></h3>
+                    <p>{{project.project_description}}</p>
+                </div>
+            </div>
+        </div>
 
-
-            
         {% endfor%}
     </div>
 
