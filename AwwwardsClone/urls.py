@@ -11,6 +11,9 @@ urlpatterns = [
     re_path(r'^logout',views.logout,name='logout'),
     re_path(r'^upload',views.upload,name = "upload"),
     re_path(r'^search/',views.search_results,name='search_results'),
+    re_path(r'^profile',views.profile,name = "profile"),
+    re_path(r'^add_profile',views.add_profile,name = "add_profile"),
+    re_path(r'^update_profile/(\d+)',views.update_profile,name = "update_profile"),
 ]
 
 
