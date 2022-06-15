@@ -125,5 +125,8 @@ def update_profile(request,id):
         form = UpdateProfileForm()
     return render(request, 'all_templates/update_profile.html', {"current_user":current_user , "form":form})
 
+def project_details(request, project_id):
+    project = Project.objects.get(id=project_id)
 
+    return render(request, "project_details.html", {"project": project}) 
 
