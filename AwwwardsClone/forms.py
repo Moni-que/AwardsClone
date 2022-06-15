@@ -12,3 +12,14 @@ class ProjectForm(forms.ModelForm):
                  'project_name',
                  'project_description',
         ]
+
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('profile_photo','bio','contact')    
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('profile_photo','bio','contact')  
