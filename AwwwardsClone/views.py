@@ -4,7 +4,8 @@ from .models import Profile, Project, Review
 from django.http import JsonResponse, HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .forms import ProjectForm
+from .forms import ProjectForm, UpdateProfileForm, ProfileForm
+
 # Create your views here.
 @login_required(login_url = "signin")
 def index(request):
@@ -85,4 +86,44 @@ def search_results(request):
     else:
         message = 'Not found'
     return render(request, 'all_templates/search_results.html',{"message":message})
+
+@login_required(login_url = "signin")
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    project = Project.objects.filter(user_id=current_user.id)
+
+    return render(request,"all_templates/profile.html",{'profile':profile ,'project':project})
+
+@login_required(login_url = "signin")
+def add_profile(request):
+    current_user = request.user
+    title = "Add Profile"
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = ProfileForm()
+    return render(request, 'all_templates/add_profile.html', {"form": form, "title": title})
+
+@login_required(login_url = "signin")
+def update_profile(request,id):
+
+    current_user = request.user
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            profile = form.save(commit = False)
+            profile.save()
+        return redirect("profile" )
+    else:
+        form = UpdateProfileForm()
+    return render(request, 'all_templates/update_profile.html', {"current_user":current_user , "form":form})
+
+
 
