@@ -1,0 +1,66 @@
+{% extends 'all_templates/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+
+<section class="container" style="margin: auto;">
+    <div class=" mt-4 text-center">
+        <div class="row text-center">
+            <div class="col-md-6 text-center">
+                <div class="card text-center" style="width: 80%;background-color:  #e6e6ea; padding: 10px;">
+                    {% if profile.profile_photo %}
+                        <img src="{{project.profile_photo.url}}" style="width: 100%;" alt="">
+                    {%else%}
+                        <img style="height: 100px;" src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3><b>{{user.username}}</b></h3>
+                        <p>
+                            {% if profile.bio %}
+                            <p>{{ profile.bio }}</p>
+                            {% else %}
+                            <span class="text-danger">No bio</span>
+                            {% endif %}
+                        </p>
+                        <p class="text-sm-centre">Contact:{{profile.contact}}</p>
+                    </div>
+                    {% if request.user is user %}  
+                    <div>
+                        <a href="{%url 'update_profile' user.id %}" class="btn btn-info btn-lg">Update Profile</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</section>
+
+
+
+    <h3 class="post-title text-center" id="ig-text">MY &nbsp; POSTED &nbsp;PROJECTS:</h3>
+    <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
+    <div class="container-fluid">
+        <div class="row">
+
+            {% for project in project %}
+            <div class="col-md-4" id="">
+
+                    <div class="card mb-4">
+                        <h5 class="card-title text-center"><b>Title: </b>{{project.name}}</h5>
+                        <img src="{{ project.image.url }}" alt="" width="400"/>
+                    </div>
+                    </p>
+            </div>
+            {% empty %}
+
+            <div class="row">
+                <div class="text-center" role="alert">
+                    <p> No Posts Yet! </p>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+           {% endfor %}  
+{% endblock %} 
