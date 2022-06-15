@@ -14,6 +14,7 @@ urlpatterns = [
     re_path(r'^profile',views.profile,name = "profile"),
     re_path(r'^add_profile',views.add_profile,name = "add_profile"),
     re_path(r'^update_profile/(\d+)',views.update_profile,name = "update_profile"),
+    re_path(r'^profile_id/(\d+)', views.project_details, name="project_details"),
 ]
 
 
