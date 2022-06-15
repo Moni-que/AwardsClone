@@ -9,7 +9,7 @@
             <div class="col-md-6 text-center">
                 <div class="card text-center" style="width: 80%;background-color:  #e6e6ea; padding: 10px;">
                     {% if profile.profile_photo %}
-                        <img src="{{project.profile_photo.url}}" style="width: 100%;" alt="">
+                        <img src="{{profile.profile_photo.url}}" height="100" alt="">
                     {%else%}
                         <img style="height: 100px;" src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png">
                     {% endif %}
@@ -37,9 +37,8 @@
 </section>
 
 
-
-    <h3 class="post-title text-center" id="ig-text">MY &nbsp; POSTED &nbsp;PROJECTS:</h3>
-    <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
+    <h3 class="post-title text-center" id="ig-text">MY PROJECTS</h3>
+    <hr>
     <div class="container-fluid">
         <div class="row">
 
@@ -47,7 +46,7 @@
             <div class="col-md-4" id="">
 
                     <div class="card mb-4">
-                        <h5 class="card-title text-center"><b>Title: </b>{{project.name}}</h5>
+                        <h5 class="card-title text-center"><b>Title: </b>{{project.project_name}}</h5>
                         <img src="{{ project.image.url }}" alt="" width="400"/>
                     </div>
                     </p>
