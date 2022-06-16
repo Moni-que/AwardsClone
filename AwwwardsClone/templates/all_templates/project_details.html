@@ -1,0 +1,134 @@
+{% extends "all-atawards/base.html" %}
+{% block content %}
+
+
+
+<h1 class="text-center text-light" style="margin-top: 5%;">Project</h1>
+<hr style="height:3px;border-width:1;background-color:#4cfb12">
+
+
+
+{% if project.image %}
+<section class="single-top-header" 
+ style="height: 70vh; width:80vw; margin-left:120px; margin-top:2%; background-repeat: no-repeat;background-size: cover;background-position: center; 
+ background-image: url({{project.image.url}})">
+    {% else %}
+    <section class="single-top-header">
+        {% endif %}
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                       <!-- check if author profile exists -->
+                       {% if project.user.profile_pic_path %}
+                       <img src="{{ user.profile_pic_path }}" alt="author" class="aimg mt-3">
+                       {% else %}
+                      
+                       {% endif %}
+
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </section>
+    <section class="blog-container p-5">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-8">
+                    <h2 class="card-title text-success ">Title:&nbsp;{{project.name}}</h2>
+                    <p class="card-text text-light"><b>Description:&nbsp;</b>{{project.description}}</p>
+                    <P class="card-text text-light">Category:&nbsp;{{project.category}}</P>
+                    <P class="card-text text-light">Location:&nbsp;{{project.location}}</P>
+
+                    <div class="single-content">
+
+
+                        <div class="author mt-5 mb-5">
+                            <p class="user text-success">
+                                By &#126; {{user.username}}
+                                <P class="user text-success">Date Posted:&nbsp;<em>{{project.date}}</em></P>
+                                <a href="{{project.link}}" class="btn btn-info btn-centered bg-success">Checkout Site</a>
+                            </p>
+
+                            </div>
+                            </div>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <form action="{%url 'review.project' project.id %}" method="post">
+                  {% csrf_token %}
+                  <style>
+                    thead>tr>th{
+                          color:white;
+                      }
+                  </style>
+            <table class="table table-black ">
+                <thead>
+                  <tr>
+
+                    <th scope="col">Design</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Usability</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+
+                    <td><input type="number" class="form-control" name="design" min="0"max="10" value="0"></td>
+                    <td><input type="number" class="form-control" name="content" min="0"max="10" value="0"></td>
+                    <td> <input type="number" class="form-control" name="usability" min="0"max="10" value="0"></td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+              <button class="btn btn-success btn-lg" type="submit">Review</button>
+            </form>
+            
+          </div>
+       
+          </div>
+        
+
+        </div> 
+        <br>
+        <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#31ef0f">
+       <style>
+           th{
+               color:black;
+           }
+       </style>
+
+        <div class="container-fluid text-light text-centre ">
+            <h2 class="text-center text-light">This Project's Reviews</h2>
+            <br>
+            <div class="col-md-12">
+            {% for review in reviews %}
+            <div class="row">
+              <div class="col-md-2">
+                <p>Reviewer:  {{review.user.username}}</p>
+              </div>
+              <div class="col-md-2">
+                <p>Design: {{review.design_review}}</p>   
+              </div>
+              <div class="col-md-2">
+                <p>Content: {{review.content_review}}</p>
+              </div>
+              <div class="col-md-3">
+                <p>Usability:{{review.usability_review}}</p>
+              </div>
+              <div class="col-md-2">
+                <p>Average:{{rate.avg_rate}}</p>
+              </div>
+            </div>
+            {% empty %}
+              <p class="alert alert-danger"role="alert">No Reviews yet!</p>
+            {% endfor %}
+            </div> 
+          </div>
+        </div>
+    </section>
+
+
+{% endblock %} 

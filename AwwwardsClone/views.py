@@ -111,6 +111,7 @@ def add_profile(request):
         form = ProfileForm()
     return render(request, 'all_templates/add_profile.html', {"form": form, "title": title})
 
+#Form
 @login_required(login_url = "signin")
 def update_profile(request,id):
 
@@ -120,13 +121,42 @@ def update_profile(request,id):
         if form.is_valid():
             profile = form.save(commit = False)
             profile.save()
-        return redirect("profile" )
+        return redirect("profile")
     else:
         form = UpdateProfileForm()
+    
     return render(request, 'all_templates/update_profile.html', {"current_user":current_user , "form":form})
 
+#
 def project_details(request, project_id):
     project = Project.objects.get(id=project_id)
 
     return render(request, "project_details.html", {"project": project}) 
+
+@login_required(login_url='/accounts/login/')
+def review_project(request,id):
+    if request.method == 'POST':
+        project = Project.objects.get(id=id)
+        current_user = request.user
+
+        design_review = request.POST['design']
+        content_review = request.POST['content']
+        usability_review = request.POST['usability']
+
+
+        Review.objects.create(
+            project=project,
+            user=current_user,
+            design_review=design_review,
+            usability_review=usability_review,
+            content_review=content_review,
+        )
+
+        
+        return render(request,'all_templates/project_details.html',{"project":project})
+
+    else:
+        project = Project.objects.get(id=id)
+
+        return render(request,'all_templates/project_details.html',{"project":project})
 
