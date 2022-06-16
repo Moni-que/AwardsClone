@@ -130,8 +130,9 @@ def update_profile(request,id):
 #
 def project_details(request, project_id):
     project = Project.objects.get(id=project_id)
+    reviews = Review.objects.filter(project = project)
 
-    return render(request, "project_details.html", {"project": project}) 
+    return render(request, "all_templates/project_details.html", {"project": project, 'reviews':reviews}) 
 
 @login_required(login_url='/accounts/login/')
 def review_project(request,id):
