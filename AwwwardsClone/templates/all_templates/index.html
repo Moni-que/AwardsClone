@@ -2,26 +2,28 @@
 {% load bootstrap3 %}
 {% block content %}
 
-    <div class="container">
-        <h1 class="text-center" style="padding-bottom: 20px;">WELCOME TO AWARDS</h1>
+    <div class="container-fluid">
+        <div class="container" style="padding-bottom: 30px;">
+            <h1 class="text-center" style="color: white; padding-bottom: 20px;">WELCOME TO AWWWARDS</h1>
         {% for project in projects %}
 
-        <div class="col-md-4">
-            <div class="card" style="width: 100;background-color:  #e6e6ea; padding: 10px;">
-                {% if project.image %}
-                <img src="{{project.image.url}}" style="width: 100%;" alt="">
-                {% endif %}
-                <div class="card-body">
-                    <h3><b>{{project.user}}</b></h3>
-                    <a href="{{project.project_link}}" style="text-decoration: none;">{{project.project_link}}</a>
-                    <h4><b>{{project.project_name}}</b></h4>
-                    <p><b><h4 class="" style="border-bottom: solid maroon 1px; width:40%"> Description</h4></b> {{project.project_description}}</p>
-                    <a href="{% url 'project_details' project.id %}"><button class="btn btn-success">Review App</button></a>
+            <div class="col-md-4">
+                <div class="card" style="width: 100;background-color:  #e6e6ea; padding: 10px;">
+                    {% if project.image %}
+                    <img src="{{project.image.url}}" style="width: 100%;" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3><b>{{project.user}}</b></h3>
+                        <a href="{{project.project_link}}" style="text-decoration: none;">{{project.project_link}}</a>
+                        <h4><b>{{project.project_name}}</b></h4>
+                        <p><b><h4 class="" style="border-bottom: solid maroon 1px; width:40%"> Description</h4></b> {{project.project_description}}</p>
+                        <a href="{% url 'project_details' project.id %}"><button class="btn btn-success">Review App</button></a>
+                    </div>
                 </div>
             </div>
-        </div>
 
         {% endfor%}
+        </div>
     </div>
 
 {% endblock %}
