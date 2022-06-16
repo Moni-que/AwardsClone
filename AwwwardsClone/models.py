@@ -52,5 +52,12 @@ class Review(models.Model):
     usability_review = models.IntegerField(default=0, blank=True, null=True)
     content_review = models.IntegerField(default=0, blank=True, null=True)
 
+
+    def save_review(self):
+        self.save()
+
+    def delete_review(self):
+        self.delete()
+
     def __str__(self):
-        return self.design_review
+        return self.user.username

@@ -62,17 +62,17 @@
             <br>
             <div class="col-md-12">
             {% for review in reviews %}
-            <div class="row">
-                <div class="col-md-2">
+            <div class="row text-center">
+                <div class="col-md-2" style="border-left: solid 1px red;">
                     <p>Reviewer:  {{review.user.username}}</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="border-left: solid 1px red;">
                     <p>Design: {{review.design_review}}</p>   
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="border-left: solid 1px red;">
                     <p>Content: {{review.content_review}}</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="border-left: solid 1px red;">
                     <p>Usability:{{review.usability_review}}</p>
                 </div>
             </div>
